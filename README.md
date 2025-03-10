@@ -1,6 +1,6 @@
 1. compile hyeong.cpp
 
-clang++ -o hyeong hyeong.cpp `llvm-config --cxxflags --ldflags --libs core`
+clang++ -o hyeong hyeong.cpp \`llvm-config --cxxflags --ldflags --libs core\`
 
 2. compile hyeong language source file
 
