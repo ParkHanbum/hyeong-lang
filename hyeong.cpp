@@ -225,8 +225,8 @@ class HyeongCompiler
         Value *result = builder.CreateSelect(cond, builder.getInt32(1), val);
 
         // 디버깅: pop된 값 출력
-        Constant *formatStr = builder.CreateGlobalStringPtr("\nPop from stack %d: %d, SP: %d");
-        builder.CreateCall(printfFunc, {formatStr, builder.getInt32(stackIdx), result, sp});
+        // Constant *formatStr = builder.CreateGlobalStringPtr("\nPop from stack %d: %d, SP: %d");
+        // builder.CreateCall(printfFunc, {formatStr, builder.getInt32(stackIdx), result, sp});
         return result;
     }
 
@@ -234,8 +234,8 @@ class HyeongCompiler
     {
         ensureStack(stackIdx);
         Value *sp = builder.CreateLoad(Int32Ty, stackPointers[stackIdx]);
-        Constant *formatStr = builder.CreateGlobalStringPtr("\nPush to stack %d: %d, SP: %d");
-        builder.CreateCall(printfFunc, {formatStr, builder.getInt32(stackIdx), value, sp});
+        // Constant *formatStr = builder.CreateGlobalStringPtr("\nPush to stack %d: %d, SP: %d");
+        // builder.CreateCall(printfFunc, {formatStr, builder.getInt32(stackIdx), value, sp});
         Value *cond = builder.CreateICmpSGE(sp, builder.getInt32(100));
         Value *selectedSp = builder.CreateSelect(cond, builder.getInt32(99), sp);
         Value *ptr = builder.CreateGEP(Int32Ty, stacks[stackIdx], selectedSp);
